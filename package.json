@@ -1,0 +1,33 @@
+{
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "dotenv": "^16.3.0",
+    "ejs": "^3.1.8",
+    "express": "^4.18.2",
+    "mysql2": "^3.6.2",
+    "sequelize": "^6.6.2"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.12.10",
+    "@babel/node": "^7.12.10",
+    "@babel/preset-env": "^7.12.10",
+    "nodemon": "^2.0.20"
+  },
+  "scripts": {
+    "dev": "nodemon --exec babel-node server.js"
+  },
+  "name": "booking-car",
+  "version": "1.0.0",
+  "description": "backend nodejs",
+  "main": "server.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/camtrandev/Booking-car.git"
+  },
+  "author": "camtrandev",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/camtrandev/Booking-car/issues"
+  },
+  "homepage": "https://github.com/camtrandev/Booking-car#readme"
+}
