@@ -3,6 +3,8 @@ import bodyParser from "body-parser";
 const configViewEngine = require('./src/config/viewEngine');
 import initWebroutes from './src/routes/web';
 require('dotenv').config();
+const connectDB = require('./src/config/dataBasc');
+
 
 
 let app =  express();
@@ -13,6 +15,7 @@ app.use(bodyParser.urlencoded({extended: true}))
 configViewEngine(app);
 initWebroutes(app);
 
+connectDB();
 
 let port = process.env.PORT || 2004;
 
