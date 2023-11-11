@@ -1,7 +1,10 @@
 const express = require('express');
 const router = express.Router();
 const {
-    getHomePage
+    getHomePage,
+    getCrud,
+    postCrud,
+    displayGetCrud
     } 
   = require('../controllers/homeController')
 
@@ -9,6 +12,9 @@ const {
 let initWebroutes = (app) => {
 
     router.get('/', getHomePage);
+    router.get('/crud', getCrud);
+    router.post('/post-crud', postCrud);
+    router.get('/get-crud', displayGetCrud);
     return app.use("/", router);
 }
 
