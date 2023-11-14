@@ -5,9 +5,15 @@ const {
   postCrud,
   displayGetCrud,
   getEditCrud,
-  putCrud
+  putCrud,
+  deleteCrud
 }
   = require('../controllers/homeController')
+
+  // import file Usercontroller dùng sử lý APi
+const {
+  handleLogin
+} = require('../controllers/userController')
 
 const router = express.Router();
 
@@ -19,6 +25,10 @@ let initWebroutes = (app) => {
   router.get('/get-crud', displayGetCrud);
   router.get('/edit-crud', getEditCrud);
   router.post('/put-crud', putCrud);
+  router.get('/delete-crud', deleteCrud);
+
+// import file Usercontroller dùng sử lý APi, liên quan đến người dùng thì cho vào controller
+router.post('/api/login', handleLogin);
 
 
   return app.use("/", router);

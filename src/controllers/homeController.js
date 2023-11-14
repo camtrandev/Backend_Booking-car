@@ -71,11 +71,22 @@ const putCrud = async (req, res) => {
     });
 }
 
+const deleteCrud = async (req, res) => {
+    let id = req.query.id;
+    if (id) {
+        await deleteUserById(id);
+        return res.send('Delete user the succeed');
+    }else {
+        return res.send ('User not found');
+    }
+}
+
 module.exports = {
     getHomePage,
     getCrud,
     postCrud,
     displayGetCrud,
     getEditCrud,
-    putCrud
+    putCrud,
+    deleteCrud
 }
