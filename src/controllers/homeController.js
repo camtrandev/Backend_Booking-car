@@ -5,7 +5,8 @@ const {
     createNewUser,
     getAllUser,
     getUserInfoById,
-    upDateUserData
+    upDateUserData,
+    deleteUserById
 } = require('../services/CRUDservices')
 
 

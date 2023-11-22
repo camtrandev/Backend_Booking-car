@@ -1,7 +1,7 @@
 
 const bcrypt = require('bcryptjs');
 const db = require('../models/index');
-const { resolveInclude } = require('ejs');
+//const { resolveInclude } = require('ejs');
 
 const salt = bcrypt.genSaltSync(10);
 
@@ -92,7 +92,8 @@ let upDateUserData = (data) => {
             // Và cần phải biết Id của thằng user mới update được
             let user = await db.User.findOne({
                 // tìm id trong db trùng với id mà mình chuyền vào
-                where: { id: data.id }
+                where: { id: data.id },
+                raw: false
             })
             if (user) {
                 user.lastName = data.lastName;
@@ -118,8 +119,9 @@ let upDateUserData = (data) => {
 const deleteUserById = (id) => {
     return new Promise (async(resolve, reject) => {
         try {
-            let uesr = await db.User.findOne({
-                where: {id:id}
+            let user = await db.User.findOne({
+                where: {id:id},
+                raw: false
             })
             if (user) {
                 await user.destroy();
@@ -140,5 +142,4 @@ module.exports = {
     getUserInfoById,
     upDateUserData,
     deleteUserById
-
 }
