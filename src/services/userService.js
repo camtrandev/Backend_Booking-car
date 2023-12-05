@@ -35,7 +35,7 @@ let handleUserLogin = (email, password) => {
                     where: { email: email },
                     // cần phải raw để ẩn bớt mấy cái râu ria thì mới có thể ẩn password đi được  
                     raw: true,
-                    attributes: ['email', 'roleId', 'password'] // những trường mà mình muốn sâu ra
+                    attributes: ['email', 'roleId', 'password', 'firstName', 'lastName'] // những trường mà mình muốn sâu ra
                     // nếu không muốn xâu cái password ra màn hình thì hãy tra gg :"lm thế nào để delete 1 thuộc tính của 1 javascript object"
                 })
                 if (user) {
@@ -125,25 +125,27 @@ const createNewUser = (data) => {
             if (check === true) {
                 resolve({
                     errCode: 1,
-                    message: "Your email is alresdy in used, plz try another email"
+                    errMessage: "Your email is alresdy in used, plz try another email"
+                })
+            } else {
+
+                let hashPasswordFormBcrypt = await hashUserPassword(data.password);
+                await db.User.create({
+                    email: data.email,
+                    password: hashPasswordFormBcrypt,
+                    firstName: data.firstName,
+                    lastName: data.lastName,
+                    address: data.address,
+                    phoneNmuber: data.phoneNmuber,
+                    gender: data.gender === '1' ? true : false,
+                    roleId: data.roleId
+                });
+                // trả về 1 chuối messgae -- tương đương với câu lênh return
+                resolve({
+                    errCode: 0,
+                    errMessage: 'ok!'
                 })
             }
-            let hashPasswordFormBcrypt = await hashUserPassword(data.password);
-            await db.User.create({
-                email: data.email,
-                password: hashPasswordFormBcrypt,
-                firstName: data.firstName,
-                lastName: data.lastName,
-                address: data.address,
-                phoneNmuber: data.phoneNmuber,
-                gender: data.gender === '1' ? true : false,
-                roleId: data.roleId
-            });
-            // trả về 1 chuối messgae -- tương đương với câu lênh return
-            resolve({
-                errCode: 0,
-                message: 'ok!'
-            })
 
         } catch (e) {
             reject()
@@ -217,10 +219,41 @@ const upDateUserData = (data) => {
     })
 }
 
+/**
+ * Viet API De lay ra ROLE
+ */
+
+const getAllCodeService = (typeInput) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            console.log(typeInput)
+            if (!typeInput) {
+                resolve({
+                    errCode: 1,
+                    errMessage: 'Maissing required parmeters!'
+                })
+            } else {
+                let res = {};
+                let allcode = await db.Allcode.findAll({
+                    where: { type: typeInput }
+                });
+                res.errCode = 0;
+                res.data = allcode;
+                resolve(res)
+            }
+
+        } catch (e) {
+            reject(e);
+        }
+    })
+}
+
+
 module.exports = {
     handleUserLogin,
     getAllUsers,
     createNewUser,
     deleteUser,
-    upDateUserData
+    upDateUserData,
+    getAllCodeService
 }
