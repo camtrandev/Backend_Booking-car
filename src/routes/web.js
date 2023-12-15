@@ -41,7 +41,7 @@ let initWebroutes = (app) => {
 
   // Viết API lẩy ra ROLE để phân quyền người dùng
   
-  router.get('/allcode', getAllCode)
+  router.get('/api/allcode', getAllCode)
 
   return app.use("/", router);
 }
