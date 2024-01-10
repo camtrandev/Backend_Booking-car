@@ -10,6 +10,11 @@ const {
 }
   = require('../controllers/homeController')
 
+  const {
+    getAllDrive,
+    postInforDrive
+  } = require('../controllers/driveController')
+
 // import file Usercontroller dùng sử lý APi, liên quan đến người dùng thì cho vào controller
 const {
   handleLogin,
@@ -42,6 +47,11 @@ let initWebroutes = (app) => {
   // Viết API lẩy ra ROLE để phân quyền người dùng
   
   router.get('/api/allcode', getAllCode)
+
+  // lấy thông tin Bác Sĩ
+  router.get('/api/get-all-drives', getAllDrive);
+  // luu thong tin bac si
+  router.post('/api/save-infor-drives', postInforDrive);
 
   return app.use("/", router);
 }
