@@ -30,8 +30,22 @@ const postInforDrive = async (req, res) => {
     }
 }
 
+const getDetailDriveById = async (req, res) => {
+    try {
+        let infor = await driveService.getDetailDriveById(req.query.id);
+        return res.status(200).json(infor);
+
+    } catch (e) {
+        console.log(e);
+        return res.status(200).json({
+            errCode: -1,
+            errMessage: 'Error from the server'
+        })
+    }
+}
 
 module.exports = {
     getAllDrive,
-    postInforDrive
+    postInforDrive,
+    getDetailDriveById
 }

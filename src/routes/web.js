@@ -12,7 +12,8 @@ const {
 
   const {
     getAllDrive,
-    postInforDrive
+    postInforDrive,
+    getDetailDriveById
   } = require('../controllers/driveController')
 
 // import file Usercontroller dùng sử lý APi, liên quan đến người dùng thì cho vào controller
@@ -48,10 +49,12 @@ let initWebroutes = (app) => {
   
   router.get('/api/allcode', getAllCode)
 
-  // lấy thông tin Bác Sĩ
+  // lấy thông tin lay xe
   router.get('/api/get-all-drives', getAllDrive);
-  // luu thong tin bac si
+  // luu thong tin lay xe
   router.post('/api/save-infor-drives', postInforDrive);
+
+  router.get('/api/get-detail-drive-by-id', getDetailDriveById);
 
   return app.use("/", router);
 }
