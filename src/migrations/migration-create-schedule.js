@@ -20,11 +20,11 @@ module.exports = {
                 type: Sequelize.DATE
             },
 
-            timetype: {
+            timeType: {
                 type: Sequelize.STRING
             },
 
-            driverId: {
+            driveId: {
                 type: Sequelize.INTEGER
             },
 

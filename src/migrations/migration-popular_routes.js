@@ -1,36 +1,44 @@
 'use strict';
 module.exports = {
     up: async (queryInterface, Sequelize) => {
-        await queryInterface.createTable('bookings', {
+        await queryInterface.createTable('popular_routes', {
             id: {
                 allowNull: false,
                 autoIncrement: true,
                 primaryKey: true,
                 type: Sequelize.INTEGER
             },
-            statusId: {
+
+
+            tripId: {
+
+                type: Sequelize.INTEGER
+            },
+
+            dateStartId: {
+
+                type: Sequelize.INTEGER
+            },
+
+            dateEndId: {
+
+                type: Sequelize.INTEGER
+            },
+
+            image: {
+
+                type: Sequelize.STRING
+            },
+            locationStartId: {
+
+                type: Sequelize.STRING
+            },
+            locationEndId: {
+
                 type: Sequelize.STRING
             },
 
-            driveId: {
-                type: Sequelize.INTEGER
-            },
 
-            customerId: {
-                type: Sequelize.INTEGER
-            },
-
-            locationId: {
-                type: Sequelize.INTEGER
-            },
-
-            date: {
-                type: Sequelize.DATE
-            },
-
-            timeType: {
-                type: Sequelize.STRING
-            },
 
             createdAt: {
                 allowNull: false,
@@ -43,6 +51,6 @@ module.exports = {
         });
     },
     down: async (queryInterface, Sequelize) => {
-        await queryInterface.dropTable('bookings');
+        await queryInterface.dropTable('popular_routes');
     }
 };

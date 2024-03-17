@@ -12,7 +12,7 @@ module.exports = {
                 type: Sequelize.INTEGER
             },
 
-            driverId: {
+            driveId: {
                 type: Sequelize.INTEGER
             },
 

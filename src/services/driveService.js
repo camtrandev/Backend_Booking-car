@@ -1,4 +1,7 @@
 const db = require('../models/index')
+require('dotenv').config();
+const MAX_NUMBER_SCHEDULE = process.env.MAX_NUMBER_SCHEDULE;
+import _ from 'lodash';
 
 
 const getAllDrives = () => {
@@ -94,8 +97,11 @@ const getDetailDriveById = (inputId) => {
     })
 }
 
+
+
 module.exports = {
     getAllDrives,
     saveDetailInforDrive,
-    getDetailDriveById
+    getDetailDriveById,
+
 }

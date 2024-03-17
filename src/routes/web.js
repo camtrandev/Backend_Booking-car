@@ -1,4 +1,5 @@
 const express = require('express');
+import tripInforController from '../controllers/tripInforController'
 const {
   getHomePage,
   getCrud,
@@ -10,11 +11,11 @@ const {
 }
   = require('../controllers/homeController')
 
-  const {
-    getAllDrive,
-    postInforDrive,
-    getDetailDriveById
-  } = require('../controllers/driveController')
+const {
+  getAllDrive,
+  postInforDrive,
+  getDetailDriveById
+} = require('../controllers/driveController')
 
 // import file Usercontroller dùng sử lý APi, liên quan đến người dùng thì cho vào controller
 const {
@@ -46,7 +47,7 @@ let initWebroutes = (app) => {
   router.delete('/api/delete-user', handleDeleteUser);
 
   // Viết API lẩy ra ROLE để phân quyền người dùng
-  
+
   router.get('/api/allcode', getAllCode)
 
   // lấy thông tin lay xe
@@ -55,6 +56,10 @@ let initWebroutes = (app) => {
   router.post('/api/save-infor-drives', postInforDrive);
 
   router.get('/api/get-detail-drive-by-id', getDetailDriveById);
+
+  // description Trip Infor
+  router.post('/api/save-detail-trip', tripInforController.SaveDetailTrip);
+  router.get('/api/get-trip-infor-by-id', tripInforController.getTripInforById); // lưu lịch trình xuống database
 
   return app.use("/", router);
 }
