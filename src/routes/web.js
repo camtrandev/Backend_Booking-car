@@ -61,6 +61,8 @@ let initWebroutes = (app) => {
   router.post('/api/save-detail-trip', tripInforController.SaveDetailTrip);
   router.get('/api/get-trip-infor-by-id', tripInforController.getTripInforById); // lưu lịch trình xuống database
 
+  router.get('/api/get-trip-infor-by-location', tripInforController.getTripInforBylocation); // lưu lịch trình xuống database
+
   return app.use("/", router);
 }
 

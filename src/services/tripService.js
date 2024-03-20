@@ -104,7 +104,57 @@ const SaveDetailTrip = (data) => {
     })
 }
 
+let getTripInforBylocation = (locationStart, locationEnd) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            if (!locationStart || !locationEnd) {
+                resolve({
+                    errCode: 1,
+                    errMessage: 'Missing required parameter!'
+                })
+            } else {
+                let result = await db.TripInfor.findAll({
+                    where: {
+                        locationStartId: locationStart,
+                        locationEndId: locationEnd,
+                    },
+                    include: [
+
+
+                        { model: db.Allcode, as: 'priceTypeData', attributes: ['valueEn', 'valueVi'] },
+                        { model: db.Allcode, as: 'locationStartTypeData', attributes: ['valueEn', 'valueVi'] },
+                        { model: db.Allcode, as: 'paymentTypeData', attributes: ['valueEn', 'valueVi'] },
+                        { model: db.Allcode, as: 'locationEndTypeData', attributes: ['valueEn', 'valueVi'] },
+                        { model: db.User, as: 'driveData', attributes: ['firstName', 'lastName'] },
+                    ],
+                    raw: false,
+                    nest: true
+                })
+                if (!result) result = {};
+                else {
+                    if (result && result.length >= 1) {
+                        result.map(item => {
+                            item.image = new Buffer(item.image, 'base64').toString('binary');
+                            return item
+                        })
+                    } else {
+                        result.image = new Buffer(result.image, 'base64').toString('binary');
+                    }
+                }
+                resolve({
+                    errCode: 0,
+                    result: result
+                })
+
+            }
+        } catch (e) {
+            reject(e);
+        }
+    })
+}
+
 module.exports = {
     getTripInforById,
-    SaveDetailTrip
+    SaveDetailTrip,
+    getTripInforBylocation
 }

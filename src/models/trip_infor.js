@@ -11,6 +11,14 @@ module.exports = (sequelize, DataTypes) => {
          */
         static associate(models) {
             // define association here
+            TripInfor.belongsTo(models.User, { foreignKey: 'driveId', as: 'driveData' })
+
+            TripInfor.belongsTo(models.Allcode, { foreignKey: 'priceId', targetKey: 'keyMap', as: 'priceTypeData' })
+            TripInfor.belongsTo(models.Allcode, { foreignKey: 'locationStartId', targetKey: 'keyMap', as: 'locationStartTypeData' })
+            TripInfor.belongsTo(models.Allcode, { foreignKey: 'paymentId', targetKey: 'keyMap', as: 'paymentTypeData' })
+            TripInfor.belongsTo(models.Allcode, { foreignKey: 'locationEndId', targetKey: 'keyMap', as: 'locationEndTypeData' })
+
+
         }
     };
     TripInfor.init({
