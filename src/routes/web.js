@@ -1,5 +1,9 @@
 const express = require('express');
 import tripInforController from '../controllers/tripInforController'
+import bookingController from '../controllers/bookingController'
+import PopularRoutesController from '../controllers/PopularRoutesController'
+import carRentalController from '../controllers/carRentalController'
+
 const {
   getHomePage,
   getCrud,
@@ -62,6 +66,20 @@ let initWebroutes = (app) => {
   router.get('/api/get-trip-infor-by-id', tripInforController.getTripInforById); // lưu lịch trình xuống database
 
   router.get('/api/get-trip-infor-by-location', tripInforController.getTripInforBylocation); // lưu lịch trình xuống database
+
+  // API đặt lịch
+  router.post('/api/patient-book-appointment', bookingController.postBookAppointment);
+  router.get('/api/get-trip-home-popular-routes', PopularRoutesController.getPopularRoutes);
+
+  // lưu thông tin ưu đãi:
+  router.post('/api/save-detail-incentive', tripInforController.SaveDetailIncentive);
+
+
+
+  //Thuê xe
+  router.post('/api/save-detail-car', carRentalController.SaveDetailCar);
+  router.post('/api/save-car-rental', carRentalController.SaveCarRental);
+
 
   return app.use("/", router);
 }

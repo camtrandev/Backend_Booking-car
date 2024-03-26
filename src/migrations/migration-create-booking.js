@@ -11,6 +11,9 @@ module.exports = {
             statusId: {
                 type: Sequelize.STRING
             },
+            tripId: {
+                type: Sequelize.INTEGER
+            },
 
             driveId: {
                 type: Sequelize.INTEGER
@@ -20,15 +23,7 @@ module.exports = {
                 type: Sequelize.INTEGER
             },
 
-            locationId: {
-                type: Sequelize.INTEGER
-            },
-
-            date: {
-                type: Sequelize.DATE
-            },
-
-            timeType: {
+            token: {
                 type: Sequelize.STRING
             },
 

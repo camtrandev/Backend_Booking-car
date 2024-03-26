@@ -153,8 +153,48 @@ let getTripInforBylocation = (locationStart, locationEnd) => {
     })
 }
 
+let SaveDetailIncentive = (data) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            if (!data.contentHTML
+                || !data.contentMarkdown || !data.description
+                || !data.voucherId || !data.garageId
+                || !data.image
+                || !data.expirationDate
+            ) {
+                resolve({
+                    errCode: 1,
+                    errMessage: 'Missing required parameter!'
+                })
+            } else {
+                await db.Incentive.create({
+                    contentHTML: data.contentHTML,
+                    contentMarkdown: data.contentMarkdown,
+                    description: data.description,
+                    image: data.image,
+                    voucherId: data.voucherId,
+                    garageId: data.garageId,
+                    expirationDate: data.expirationDate
+                });
+                resolve({
+                    errCode: 0,
+                    errMessage: 'Save infor incentive succeed'
+                })
+
+            }
+
+        } catch (e) {
+            console.log("Error:  ", e)
+            reject(e)
+        }
+    })
+}
+
+
+
 module.exports = {
     getTripInforById,
     SaveDetailTrip,
-    getTripInforBylocation
+    getTripInforBylocation,
+    SaveDetailIncentive
 }
