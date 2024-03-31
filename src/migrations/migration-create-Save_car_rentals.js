@@ -2,25 +2,58 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('Cars', {
+    await queryInterface.createTable('Save_car_rentals', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      Name: {
+
+
+      carId: {
+        type: Sequelize.INTEGER
+      },
+      statusId: {
         type: Sequelize.STRING
       },
-      licensePlate: {
+      number: {
+        type: Sequelize.INTEGER
+      },
+
+      address: {
         type: Sequelize.STRING
       },
-      description: {
+
+      startDate: {
         type: Sequelize.STRING
       },
-      image: {
+
+      endDate: {
         type: Sequelize.STRING
       },
+
+      token: {
+        type: Sequelize.STRING
+      },
+
+      customerName: {
+        type: Sequelize.STRING
+      },
+
+      phoneNumber: {
+        type: Sequelize.STRING
+      },
+
+      email: {
+        type: Sequelize.STRING
+      },
+
+      note: {
+        type: Sequelize.STRING
+      },
+
+
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE
@@ -32,6 +65,6 @@ module.exports = {
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('Cars');
+    await queryInterface.dropTable('Save_car_rentals');
   }
 };

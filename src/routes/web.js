@@ -71,14 +71,21 @@ let initWebroutes = (app) => {
   router.post('/api/patient-book-appointment', bookingController.postBookAppointment);
   router.get('/api/get-trip-home-popular-routes', PopularRoutesController.getPopularRoutes);
 
+
   // lưu thông tin ưu đãi:
   router.post('/api/save-detail-incentive', tripInforController.SaveDetailIncentive);
-
-
+  router.get('/api/get-top-incentive-home', tripInforController.getTopIncentiveHome);
+  router.get('/api/get-infor-incentive-by-id', tripInforController.getInforIncentiveById);
 
   //Thuê xe
   router.post('/api/save-detail-car', carRentalController.SaveDetailCar);
   router.post('/api/save-car-rental', carRentalController.SaveCarRental);
+  router.get('/api/get-infor-car-rental-home', carRentalController.getInforCarRentalHome);
+
+  router.get('/api/get-infor-car-rental-by-id', carRentalController.getInforCarRentalById);
+  router.get('/api/get-infor-car-by-location', carRentalController.getInforCarByLocation);
+
+  router.post('/api/save-car-rental-client', carRentalController.SaveCarRentalClient);
 
 
   return app.use("/", router);

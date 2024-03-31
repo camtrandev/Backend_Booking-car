@@ -11,9 +11,13 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      Car_infors.belongsTo(models.Allcode, { foreignKey: 'locationId', targetKey: 'keyMap', as: 'location' })
+      Car_infors.belongsTo(models.Allcode, { foreignKey: 'priceId', targetKey: 'keyMap', as: 'priceData' })
+
     }
   }
   Car_infors.init({
+    // cá nhân/tổ chức cho thuê xe
     Name: DataTypes.STRING,
     phoneNumber: DataTypes.STRING,
     email: DataTypes.STRING,

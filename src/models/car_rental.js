@@ -11,6 +11,8 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      Car_rental.belongsTo(models.Allcode, { foreignKey: 'locationId', targetKey: 'keyMap', as: 'locationTypeData' })
+
     }
   }
   Car_rental.init({
