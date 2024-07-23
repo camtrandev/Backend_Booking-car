@@ -36,7 +36,6 @@ let handleUserLogin = (email, password) => {
                     // cần phải raw để ẩn bớt mấy cái râu ria thì mới có thể ẩn password đi được  
                     raw: true,
                     attributes: ['email', 'roleId', 'password', 'firstName', 'lastName'] // những trường mà mình muốn sâu ra
-                    // nếu không muốn xâu cái password ra màn hình thì hãy tra gg :"lm thế nào để delete 1 thuộc tính của 1 javascript object"
                 })
                 if (user) {
                     let checkPasswork = await bcrypt.compareSync(password, user.password);
