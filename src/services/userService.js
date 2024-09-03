@@ -31,7 +31,6 @@ let handleUserLogin = (email, password) => {
 
                 // kiểm tra passwork
                 let user = await db.User.findOne({
-                    // email thứ 2 là email mà người dùng chuyền vào để check trong db
                     where: { email: email },
                     // cần phải raw để ẩn bớt mấy cái râu ria thì mới có thể ẩn password đi được  
                     raw: true,
@@ -68,6 +67,7 @@ let handleUserLogin = (email, password) => {
         }
     })
 }
+
 // login kiểm tra xem useremail đã có trong hệ thong chưa 
 let checkUserEmail = (userEmail) => {
     return new Promise(async (resolve, reject) => {
